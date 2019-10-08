@@ -16,6 +16,16 @@ public class LCATest {
 		binaryTree.root.right.left = new LCA.Node(3);
 		binaryTree.root.right.right = new LCA.Node(9);
 		
+		/*
+		 * 
+		 * 					  1
+		 *				   /     \
+		 * 			      7		  5 
+		 *              /   \    /  \
+		 * 			   2	 6	3    9
+		 *
+		 */		   
+		
 		assertEquals(7,binaryTree.findLCA(2, 6));
 		assertEquals(7,binaryTree.findLCA(6, 2));
 		assertEquals(5, binaryTree.findLCA(3, 9));
