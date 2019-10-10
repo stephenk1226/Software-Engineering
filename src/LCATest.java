@@ -78,6 +78,23 @@ public class LCATest {
 		assertEquals(1, binaryTree.findLCA(6, 7));
 		assertEquals(5, binaryTree.findLCA(7, 8));
 				
-		
 	}
+	
+	
+	@Test 
+	public void testThree() {
+		LCA.NoParent binaryTree = new LCA.NoParent();
+		binaryTree.root = new LCA.Node(1);
+		binaryTree.root.right = new LCA.Node(4);
+	
+		/*
+		 * 				1
+		 * 				 \	
+		 *                4
+		 */
+		
+		assertEquals(1, binaryTree.findLCA(4,1));
+		assertEquals(1, binaryTree.findLCA(1,4));
+	}
+	
 }
