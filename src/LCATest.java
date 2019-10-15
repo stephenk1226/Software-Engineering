@@ -103,9 +103,34 @@ public class LCATest {
 		
 		LCA.NoParent binaryTree = new LCA.NoParent();
 		binaryTree.root = null;
+		/*
+		 * 			null
+		 * 			/  \
+		 */
 		assertEquals(-1, binaryTree.findLCA(0, 0));
 		
+		LCA.DagNode head = null;
+		LCA.DagNode secondNode = null;
+        LCA.DagNode thirdNode = null;
+        assertEquals(null, LCA.findLCADag(head, secondNode, thirdNode));
+        
+		
+		
 	}
+	
+	@Test
+    public void standardDAGTest() {
+        LCA.DagNode head = new LCA.DagNode(1);
+        LCA.DagNode secondNode = new LCA.DagNode(3);
+        LCA.DagNode thirdNode = new LCA.DagNode(5);
+        LCA.DagNode fourthNode = new LCA.DagNode(7);
+        LCA.DagNode fifthNode = new LCA.DagNode(9);
+        head.edges.add(secondNode);
+        head.edges.add(thirdNode);
+        head.edges.add(fourthNode);
+        head.edges.add(fifthNode);
+        assertEquals(head, LCA.findLCADag(head, secondNode, fifthNode));
+    }
 	
 	
 }

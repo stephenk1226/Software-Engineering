@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -78,6 +79,27 @@ public class LCA {
 	        return false; 
 	    }
 	}    
+	
+	
+	public static class DagNode {
+        int value;
+        ArrayList<DagNode> edges;
+
+        DagNode(int value)
+        {
+            this.value = value;
+            edges = new ArrayList<>();
+        }
+
+        DagNode(int value, ArrayList<DagNode> edges) 
+        {
+            this.value = value;
+            this.edges = edges;
+        }
+    }
+ 
+ 
+ 
 	    
 	public static void main(String[] args) {
 		
