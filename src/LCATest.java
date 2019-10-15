@@ -77,6 +77,8 @@ public class LCATest {
 		assertEquals(10, binaryTree.findLCA(9, 12));
 		assertEquals(1, binaryTree.findLCA(6, 7));
 		assertEquals(5, binaryTree.findLCA(7, 8));
+		assertEquals(-1, binaryTree.findLCA(300, 1));
+		assertEquals(-1, binaryTree.findLCA(1, 300));
 				
 	}
 	
@@ -96,5 +98,14 @@ public class LCATest {
 		assertEquals(1, binaryTree.findLCA(4,1));
 		assertEquals(1, binaryTree.findLCA(1,4));
 	}
+	@Test
+	public void testNull() {
+		
+		LCA.NoParent binaryTree = new LCA.NoParent();
+		binaryTree.root = null;
+		assertEquals(-1, binaryTree.findLCA(0, 0));
+		
+	}
+	
 	
 }
