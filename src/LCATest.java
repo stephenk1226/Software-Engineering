@@ -107,5 +107,21 @@ public class LCATest {
 		
 	}
 	
+	@Test 
+	public void unbalancedBSTTest() {
+		LCA.NoParent binaryTree = new LCA.NoParent();
+		binaryTree.root = new LCA.Node(12);
+		binaryTree.root.right = new LCA.Node(23);
+		binaryTree.root.right.left = new LCA.Node(16);
+		binaryTree.root.right.right = new LCA.Node(49);
+		binaryTree.root.right.right.left = new LCA.Node(34);
+		binaryTree.root.right.right.left.right = new LCA.Node(42);
+		binaryTree.root.right.right.left.right.right = new LCA.Node(45);
+		
+		assertEquals (23, binaryTree.findLCA(16, 45));
+		assertEquals (42, binaryTree.findLCA(42, 45));
+		assertEquals (23, binaryTree.findLCA(16, 49));
+	
+	}
 	
 }
