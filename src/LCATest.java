@@ -113,9 +113,13 @@ public class LCATest {
 	@Test 
 	public void testDAGNull() {
 		
-		LCA.DagNode head = null;
-        assertEquals(null, LCA.findLCADag(head, null, null));
+		LCA.DagNode testNode = new LCA.DagNode(3);
+        assertEquals(null, LCA.findLCADag(null, null, null ));
+        assertEquals(null, LCA.findLCADag(null, testNode, null ));
+        assertEquals(null, LCA.findLCADag(null, null, testNode));
 	}
+	
+	//test with a small direct acyclic graph 
 		
 	@Test
     public void standardDAGTest() {
@@ -128,12 +132,13 @@ public class LCATest {
         head.edges.add(thirdNode);
         thirdNode.edges.add(fourthNode);
         thirdNode.edges.add(fifthNode);
+        
         assertEquals(head, LCA.findLCADag(head, fourthNode, secondNode));
         assertEquals(head, LCA.findLCADag(head, thirdNode, secondNode));
-        assertEquals(thirdNode, LCA.findLCADag(head, fourthNode, fifthNode));
-        
-    }
+        assertEquals(thirdNode, LCA.findLCADag(head, fourthNode, fifthNode));   
+    }	
 	
+	//test with a large direct acyclic graph 
 
 	@Test
 	public void largeDAGTest() {
@@ -164,9 +169,6 @@ public class LCATest {
 		assertEquals(thirdNode, LCA.findLCADag(head, sixthNode, eighthNode));
 		assertEquals(secondNode, LCA.findLCADag(head, fifthNode, fourthNode));
 		assertEquals(fourthNode, LCA.findLCADag(head, eleventhNode, ninthNode));
-		assertEquals(head, LCA.findLCADag(head, sixthNode, ninthNode));
-		
+		assertEquals(head, LCA.findLCADag(head, sixthNode, ninthNode));	
 	}
-	
-		
 }
