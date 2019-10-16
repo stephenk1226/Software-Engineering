@@ -97,13 +97,70 @@ public class LCA {
             this.edges = edges;
         }
     }
+	
+	public static DagNode findLCADag(DagNode head, DagNode firstNode, DagNode secondNode) {
+        DagNode LCA = null;
+        ArrayList<DagNode> nodes = new ArrayList<>();
+        addNodesToListDAG(nodes, head);
+        boolean isAncestor[] = new boolean[nodes.size()];
+        for (int i = 0; i < isAncestor.length; i++)
+            isAncestor[i] = false;
+        for (int i = 0; i < nodes.size(); i++) {
+            if (checkIfAncestorDAG(nodes.get(i), firstNode, secondNode))
+            {
+                isAncestor[i] = true;
+            }
+        }
+        for (int i = 0; i < nodes.size(); i++)
+        {
+            if(isAncestor[i])
+                LCA = nodes.get(i);
+        }
+        return LCA;
+    }
+	
+	public static boolean checkIfAncestorDAG(DagNode node, DagNode firstNode) {
+        if (node == null)
+            return false;
+        if (node == firstNode)
+            return true;
+        else {
+            for (int i = 0; i < node.edges.size(); i++) {
+                if (checkIfAncestorDAG(node.edges.get(i), firstNode)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public static boolean checkIfAncestorDAG(DagNode node, DagNode firstNode, DagNode secondNode) {
+        if (checkIfAncestorDAG(node, firstNode) && checkIfAncestorDAG(node, secondNode))
+        {
+        	 return true;
+        }
+        return false;
+    }
  
- 
- 
-	    
+    public static void addNodesToListDAG(ArrayList<DagNode> nodes, DagNode root) {
+        if (root != null) 
+        {
+            LinkedList<DagNode> queue = new LinkedList<>();
+            queue.add(root);
+            DagNode current;
+            while (queue.size() != 0) {
+                current = queue.get(0);
+                for (int i = 0; i < current.edges.size(); i++) {
+                    queue.add(current.edges.get(i));
+                }
+                nodes.add(current);
+                queue.remove(0);
+            }
+        }
+    }
+    
 	public static void main(String[] args) {
 		
-
 	}
 
 }

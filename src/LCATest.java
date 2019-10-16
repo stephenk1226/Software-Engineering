@@ -131,6 +131,5 @@ public class LCATest {
         head.edges.add(fifthNode);
         assertEquals(head, LCA.findLCADag(head, secondNode, fifthNode));
     }
-	
-	
+		
 }
