@@ -4,9 +4,9 @@ import org.junit.Test;
 
 public class LCATest {
 
+	//Test using a small balanced Binary Search Tree
 	@Test
 	public void testOne() {
-		
 		LCA.NoParent binaryTree = new LCA.NoParent();
 		binaryTree.root = new LCA.Node(1);
 		binaryTree.root.left = new LCA.Node(7);
@@ -34,11 +34,9 @@ public class LCATest {
 		assertEquals(1, binaryTree.findLCA(7, 5));
 	}
 
+	//Test using the example from the lecture slides 
 	@Test 
 	public void testTwo() {
-		
-		//Test using the example from the lecture slides 
-		
 		LCA.NoParent binaryTree = new LCA.NoParent();
 		binaryTree.root = new LCA.Node(1);
 		binaryTree.root.left = new LCA.Node(2);
@@ -70,19 +68,16 @@ public class LCATest {
 		 *                               12
 		 */					      
 		
-		
-		
 		assertEquals(5, binaryTree.findLCA(12, 8));
 		assertEquals(5, binaryTree.findLCA(9, 8));
 		assertEquals(10, binaryTree.findLCA(9, 12));
 		assertEquals(1, binaryTree.findLCA(6, 7));
 		assertEquals(5, binaryTree.findLCA(7, 8));
 		assertEquals(-1, binaryTree.findLCA(300, 1));
-		assertEquals(-1, binaryTree.findLCA(1, 300));
-				
+		assertEquals(-1, binaryTree.findLCA(1, 300));	
 	}
 	
-	
+	//Test using  a binary Search Tree with two nodes
 	@Test 
 	public void testThree() {
 		LCA.NoParent binaryTree = new LCA.NoParent();
@@ -98,6 +93,8 @@ public class LCATest {
 		assertEquals(1, binaryTree.findLCA(4,1));
 		assertEquals(1, binaryTree.findLCA(1,4));
 	}
+	
+	//Test with a Binary Search Tree with it's root as null
 	@Test
 	public void testNull() {
 		
@@ -107,6 +104,7 @@ public class LCATest {
 		
 	}
 	
+	//Test with a unbalanced Binary Search Tree
 	@Test 
 	public void unbalancedBSTTest() {
 		LCA.NoParent binaryTree = new LCA.NoParent();
@@ -136,6 +134,7 @@ public class LCATest {
 		assertEquals (23, binaryTree.findLCA(16, 49));
 	}
 	
+	//Test with a large balanced Binary Search Tree
 	@Test 
 	public void largeBSTTest() {
 		LCA.NoParent binaryTree = new LCA.NoParent();
@@ -159,6 +158,18 @@ public class LCATest {
 		binaryTree.root.right.right.right.left = new LCA.Node(45);
 		binaryTree.root.right.right.right.right = new LCA.Node(50);
 		
+		/*
+		 * 								   25
+		 * 							   /        \
+		 * 							20	        36
+		 * 						   /  \        /  \
+		 * 						 10    22     30   40
+		 * 						/  \         /     / \
+		 * 					   5    12     28    38   48
+		 * 					  / \    \                / \
+		 * 					 1   8    15			45   50
+		 * 
+		 */
 		
 		assertEquals(5, binaryTree.findLCA(1, 8));
 		assertEquals(10, binaryTree.findLCA(1, 15));
@@ -166,8 +177,5 @@ public class LCATest {
 		assertEquals(25, binaryTree.findLCA(8, 50));
 		assertEquals(36, binaryTree.findLCA(28, 48));
 		assertEquals(48, binaryTree.findLCA(45, 50));
-		
-
 	}
-	
 }
