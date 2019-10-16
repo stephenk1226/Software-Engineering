@@ -108,16 +108,15 @@ public class LCATest {
 		 * 			/  \
 		 */
 		assertEquals(-1, binaryTree.findLCA(0, 0));
-		
-		LCA.DagNode head = null;
-		LCA.DagNode secondNode = null;
-        LCA.DagNode thirdNode = null;
-        assertEquals(null, LCA.findLCADag(head, secondNode, thirdNode));
-        
-		
-		
 	}
 	
+	@Test 
+	public void testDAGNull() {
+		
+		LCA.DagNode head = null;
+        assertEquals(null, LCA.findLCADag(head, null, null));
+	}
+		
 	@Test
     public void standardDAGTest() {
         LCA.DagNode head = new LCA.DagNode(1);
@@ -127,9 +126,47 @@ public class LCATest {
         LCA.DagNode fifthNode = new LCA.DagNode(9);
         head.edges.add(secondNode);
         head.edges.add(thirdNode);
-        head.edges.add(fourthNode);
-        head.edges.add(fifthNode);
-        assertEquals(head, LCA.findLCADag(head, secondNode, fifthNode));
+        thirdNode.edges.add(fourthNode);
+        thirdNode.edges.add(fifthNode);
+        assertEquals(head, LCA.findLCADag(head, fourthNode, secondNode));
+        assertEquals(head, LCA.findLCADag(head, thirdNode, secondNode));
+        assertEquals(thirdNode, LCA.findLCADag(head, fourthNode, fifthNode));
+        
     }
+	
+
+	@Test
+	public void largeDAGTest() {
+		LCA.DagNode head = new LCA.DagNode(1);
+		LCA.DagNode secondNode = new LCA.DagNode(3);
+		LCA.DagNode thirdNode = new LCA.DagNode(5);
+		LCA.DagNode fourthNode = new LCA.DagNode(7);
+		LCA.DagNode fifthNode = new LCA.DagNode(9);
+		LCA.DagNode sixthNode = new LCA.DagNode(11);
+		LCA.DagNode seventhNode = new LCA.DagNode(13);
+		LCA.DagNode eighthNode = new LCA.DagNode(15);
+		LCA.DagNode ninthNode = new LCA.DagNode(17);
+		LCA.DagNode tenthNode = new LCA.DagNode(19);
+		LCA.DagNode eleventhNode = new LCA.DagNode(21);
+		head.edges.add(secondNode);
+		head.edges.add(thirdNode);
+		secondNode.edges.add(fourthNode);
+		secondNode.edges.add(fifthNode);
+		thirdNode.edges.add(sixthNode);
+		thirdNode.edges.add(seventhNode);
+		thirdNode.edges.add(eighthNode);
+		fourthNode.edges.add(ninthNode);
+		fourthNode.edges.add(eleventhNode);
+		fifthNode.edges.add(tenthNode);
+		
+		assertEquals(head, LCA.findLCADag(head, secondNode, sixthNode));
+		assertEquals(secondNode, LCA.findLCADag(head, fifthNode, ninthNode));
+		assertEquals(thirdNode, LCA.findLCADag(head, sixthNode, eighthNode));
+		assertEquals(secondNode, LCA.findLCADag(head, fifthNode, fourthNode));
+		assertEquals(fourthNode, LCA.findLCADag(head, eleventhNode, ninthNode));
+		assertEquals(head, LCA.findLCADag(head, sixthNode, ninthNode));
+		
+	}
+	
 		
 }
