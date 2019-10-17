@@ -125,8 +125,10 @@ public class LCA {
         if (node == firstNode)
             return true;
         else {
-            for (int i = 0; i < node.edges.size(); i++) {
-                if (checkIfAncestorDAG(node.edges.get(i), firstNode)) {
+            for (int i = 0; i < node.edges.size(); i++) 
+            {
+                if (checkIfAncestorDAG(node.edges.get(i), firstNode))
+                {
                     return true;
                 }
             }

@@ -189,7 +189,8 @@ public class LCATest {
 		assertEquals(25, binaryTree.findLCA(8, 50));
 		assertEquals(36, binaryTree.findLCA(28, 48));
 		assertEquals(48, binaryTree.findLCA(45, 50));
-
+	}
+	
 	//test with a small direct acyclic graph 
 		
 	@Test
